@@ -19,7 +19,12 @@ namespace CashFlow.Application.UseCases.Expenses.Register
 
             var result = validate.Validate(request);
 
-            var errorMessages = result.Errors.Select(x => x.ErrorMessage).ToList();
+            if (!result.IsValid)
+            {
+                var errorMessages = result.Errors.Select(x => x.ErrorMessage).ToList();
+
+                throw new ArgumentException();
+            }
         }
     }
 }
