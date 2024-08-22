@@ -19,9 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CashFlow.Exception", "src\C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CashFlow.Infrastructure", "src\CashFlow.Infrastructure\CashFlow.Infrastructure.csproj", "{3AE6FCF7-74F9-44C0-BCA4-EE32849A0765}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validators.Tests", "tests\Validators.Tests\Validators.Tests.csproj", "{E29DEACD-ECF5-443F-8D6E-7FAF66B76291}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Validators.Tests", "tests\Validators.Tests\Validators.Tests.csproj", "{E29DEACD-ECF5-443F-8D6E-7FAF66B76291}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommomTestUtilities", "tests\CommomTestUtilities\CommomTestUtilities.csproj", "{8A8F7045-1F1A-4723-983B-DB9A8A43FE7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommomTestUtilities", "tests\CommomTestUtilities\CommomTestUtilities.csproj", "{8A8F7045-1F1A-4723-983B-DB9A8A43FE7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
