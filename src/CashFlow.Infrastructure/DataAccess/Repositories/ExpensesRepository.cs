@@ -22,5 +22,10 @@ namespace CashFlow.Infrastructure.DataAccess.Repositories
         {
             return await _dbContext.Expenses.AsNoTracking().ToListAsync();
         }
+
+        public async Task<Expense?> Get(long id)
+        {
+            return await _dbContext.Expenses.AsNoTracking().FirstOrDefaultAsync(e => e.Id == id);
+        }
     }
 }
