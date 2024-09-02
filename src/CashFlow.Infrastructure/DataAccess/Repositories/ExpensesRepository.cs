@@ -1,10 +1,11 @@
 ﻿using CashFlow.Domain.Entities;
 using CashFlow.Domain.Repositories.Expenses;
 using Microsoft.EntityFrameworkCore;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace CashFlow.Infrastructure.DataAccess.Repositories
 {
-    internal class ExpensesRepository : IExpenseReadOnlyRepository, IExpensesWriteOnlyRepository
+    internal class ExpensesRepository : IExpenseReadOnlyRepository, IExpensesWriteOnlyRepository, IExpensesUpdateOnlyRepository
     {
         private readonly CashFlowDbContext _dbContext;
 
@@ -36,9 +37,19 @@ namespace CashFlow.Infrastructure.DataAccess.Repositories
             return await _dbContext.Expenses.AsNoTracking().ToListAsync();
         }
 
-        public async Task<Expense?> Get(long id)
+        async Task<Expense?> IExpenseReadOnlyRepository.Get(long id)
         {
             return await _dbContext.Expenses.AsNoTracking().FirstOrDefaultAsync(e => e.Id == id);
+        }
+
+        async Task<Expense?> IExpensesUpdateOnlyRepository.Get(long id)
+        {
+            return await _dbContext.Expenses.FirstOrDefaultAsync(e => e.Id == id);
+        }
+
+        public void Update(Expense expense)
+        {
+            _dbContext.Expenses.Update(expense);
         }
     }
 }

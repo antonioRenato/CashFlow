@@ -1,4 +1,4 @@
-﻿using CashFlow.Application.UseCases.Expenses.Register;
+﻿using CashFlow.Application.UseCases.Expenses;
 using CashFlow.Communication.Enums;
 using CashFlow.Exception;
 using CommomTestUtilities.Requests;
@@ -12,7 +12,7 @@ namespace Validators.Tests.Expenses.Register
         public void Sucess()
         {
             //Arrange
-            var validator = new RegisterExpenseValidator();
+            var validator = new ExpenseValidator();
             var request = RequestRegisterExpenseJsonBuilder.Build();
 
             //Act
@@ -29,7 +29,7 @@ namespace Validators.Tests.Expenses.Register
         public void ErrorTitleEmpty(string title)
         {
             //Arrange
-            var validator = new RegisterExpenseValidator();
+            var validator = new ExpenseValidator();
             var request = RequestRegisterExpenseJsonBuilder.Build();
             request.Title = title;
 
@@ -45,7 +45,7 @@ namespace Validators.Tests.Expenses.Register
         public void ErrorDateInvalid() 
         {
             //Arrange
-            var validator = new RegisterExpenseValidator();
+            var validator = new ExpenseValidator();
             var request = RequestRegisterExpenseJsonBuilder.Build();
 
             request.Date = DateTime.Now.AddDays(5);
@@ -61,7 +61,7 @@ namespace Validators.Tests.Expenses.Register
         public void ErrorPaymentTypeInvalid()
         {
             //Arrange
-            var validator = new RegisterExpenseValidator();
+            var validator = new ExpenseValidator();
             var request = RequestRegisterExpenseJsonBuilder.Build();
 
             request.PaymentType = (PaymentType)700;
@@ -80,7 +80,7 @@ namespace Validators.Tests.Expenses.Register
         public void ErrorAmountInvalid(decimal amount)
         {
             //Arrange
-            var validator = new RegisterExpenseValidator();
+            var validator = new ExpenseValidator();
             var request = RequestRegisterExpenseJsonBuilder.Build();
 
             request.Amount = amount;
