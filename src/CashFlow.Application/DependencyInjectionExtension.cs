@@ -4,6 +4,7 @@ using CashFlow.Application.UseCases.Expenses.Get;
 using CashFlow.Application.UseCases.Expenses.GetAll;
 using CashFlow.Application.UseCases.Expenses.Put;
 using CashFlow.Application.UseCases.Expenses.Register;
+using CashFlow.Application.UseCases.Login;
 using CashFlow.Application.UseCases.Users.Register;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -15,6 +16,8 @@ namespace CashFlow.Application
         {
             AddAutoMapper(services);
             AddUseCases(services);
+
+            services.AddScoped<IDoLoginUseCase, DoLoginUseCase> ();
         }
 
         private static void AddAutoMapper(IServiceCollection services)
