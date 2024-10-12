@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CashFlow.Infrastructure.DataAccess
 {
-    internal class CashFlowDbContext : DbContext
+    public class CashFlowDbContext : DbContext
     {
         public CashFlowDbContext(DbContextOptions optionos) : base(optionos) { }
         public DbSet<Expense> Expenses { get; set; }
