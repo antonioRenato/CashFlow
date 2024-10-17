@@ -5,6 +5,6 @@ namespace CashFlow.Domain.Repositories.Expenses
     public interface IExpenseReadOnlyRepository
     {
         Task<List<Expense>> GetAll();
-        Task<Expense?> Get(long id);
+        Task<Expense?> Get(Entities.User user, long id);
     }
 }
