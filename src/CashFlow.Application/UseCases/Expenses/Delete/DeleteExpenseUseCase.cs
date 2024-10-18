@@ -36,10 +36,8 @@ namespace CashFlow.Application.UseCases.Expenses.Delete
                 throw new NotFoundException(ResourceErrorMessages.EXPENSE_NOT_FOUND);
             }
 
-            var result = await _repository.Delete(id);
-
+            await _repository.Delete(id);
             
-
             await _unitOfWork.Commit();
         }
     }

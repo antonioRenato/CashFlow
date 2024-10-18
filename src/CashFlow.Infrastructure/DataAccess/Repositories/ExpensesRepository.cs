@@ -26,9 +26,9 @@ namespace CashFlow.Infrastructure.DataAccess.Repositories
             _dbContext.Expenses.Remove(result);
         }
 
-        public async Task<List<Expense>> GetAll()
+        public async Task<List<Expense>> GetAll(User user)
         {
-            return await _dbContext.Expenses.AsNoTracking().ToListAsync();
+            return await _dbContext.Expenses.AsNoTracking().Where(x => x.Id == user.Id).ToListAsync();
         }
 
         async Task<Expense?> IExpenseReadOnlyRepository.Get(Domain.Entities.User user, long id)
