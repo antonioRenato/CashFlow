@@ -1,4 +1,6 @@
-﻿using CashFlow.Application.UseCases.Expenses.Register;
+﻿using CashFlow.Application.UseCases.Expenses.Put;
+using CashFlow.Application.UseCases.Expenses.Register;
+using CashFlow.Application.UseCases.Users.Profile;
 using CashFlow.Application.UseCases.Users.Register;
 using CashFlow.Communication.Requests;
 using CashFlow.Communication.Responses;
@@ -24,9 +26,22 @@ namespace CashFlow.Api.Controllers
         [HttpGet]
         [ProducesResponseType(typeof(ResponseUserProfileJson), StatusCodes.Status200OK)]
         [Authorize]
-        public async Task<IActionResult> GetProfile([FromServices] IGetUserProfileUse)
+        public async Task<IActionResult> GetProfile([FromServices] IGetUserProfileUseCase useCase)
         {
+            var response = await useCase.Execute();
 
+            return Ok(response);
+        }
+
+        [HttpPut]
+        [Authorize]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> UpdateProfile([FromServices] IUpdateExpenseUseCase useCase, [FromBody] RequestUpdateUserJson request)
+        {
+            var 
+
+            return NoContent();
         }
     }
 }
