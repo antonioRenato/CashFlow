@@ -1,7 +1,9 @@
 ﻿using CashFlow.Application.UseCases.Expenses.Put;
 using CashFlow.Application.UseCases.Expenses.Register;
+using CashFlow.Application.UseCases.Users.ChangePassword;
 using CashFlow.Application.UseCases.Users.Profile;
 using CashFlow.Application.UseCases.Users.Register;
+using CashFlow.Application.UseCases.Users.Update;
 using CashFlow.Communication.Requests;
 using CashFlow.Communication.Responses;
 using Microsoft.AspNetCore.Authorization;
@@ -37,10 +39,21 @@ namespace CashFlow.Api.Controllers
         [Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpdateProfile([FromServices] IUpdateExpenseUseCase useCase, [FromBody] RequestUpdateUserJson request)
+        public async Task<IActionResult> UpdateProfile([FromServices] IUpdateUserUseCase useCase, [FromBody] RequestUpdateUserJson request)
         {
-            var 
+            await useCase.Execute(request);
 
+            return NoContent();
+        }
+
+        [HttpPut]
+        [Authorize]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> ChangePassword([FromServices] IChangePasswordUseCase useCase, [FromBody] RequestChangePasswordJson request)
+        {
+            await useCase.Execute(request);
+            
             return NoContent();
         }
     }
