@@ -31,14 +31,19 @@ namespace CashFlow.Infrastructure.DataAccess.Repositories
             return await _dbContext.Expenses.AsNoTracking().Where(x => x.Id == user.Id).ToListAsync();
         }
 
-        async Task<Expense?> IExpenseReadOnlyRepository.Get(Domain.Entities.User user, long id)
+        async Task<Expense?> IExpenseReadOnlyRepository.Get(User user, long id)
         {
-            return await _dbContext.Expenses.AsNoTracking().FirstOrDefaultAsync(e => e.Id == id && e.UserId == user.Id);
+            return await _dbContext.Expenses
+                .Include(expense => expense.Tags)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(e => e.Id == id && e.UserId == user.Id);
         }
 
         async Task<Expense?> IExpensesUpdateOnlyRepository.Get(long id)
         {
-            return await _dbContext.Expenses.FirstOrDefaultAsync(e => e.Id == id);
+            return await _dbContext.Expenses
+                .Include(expense => expense.Tags)
+                .FirstOrDefaultAsync(e => e.Id == id);
         }
 
         public void Update(Expense expense)
