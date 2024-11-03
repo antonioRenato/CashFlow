@@ -14,6 +14,14 @@ namespace CashFlow.Application.UseCases.Users.Update
         private readonly IUserReadOnlyRepository _userReadOnlyRepository;
         private readonly IUnitOfWork _unitOfWork;
 
+        public UpdateUserUseCase(ILoggedUser loggedUser, IUserUpdateOnlyRepository repository, IUserReadOnlyRepository userReadOnlyRepository, IUnitOfWork unitOfWork)
+        {
+            _loggedUser = loggedUser;
+            _repository = repository;
+            _userReadOnlyRepository = userReadOnlyRepository;
+            _unitOfWork = unitOfWork;
+        }
+
         public async Task Execute(RequestUpdateUserJson request)
         {
             var loggedUser = await _loggedUser.Get();
